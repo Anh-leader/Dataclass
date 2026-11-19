@@ -1,0 +1,118 @@
+/* Reading content uses a larger size than secondary interface labels. */
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.prose {
+  font-size: 16px;
+  line-height: 1.75;
+}
+.prose h1 { font-size: 26px; }
+.prose h2 { font-size: 22px; }
+.prose h3 { font-size: 19px; }
+.prose h4 { font-size: 17px; }
+.prose p,
+.prose li { line-height: 1.75; }
+.prose table,
+.table-scroll table {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.prose th,
+.prose td { padding: 10px 12px; }
+.prose pre,
+.prose code { font-size: 14px; }
+
+.gallery-author strong { font-size: 16px; }
+.gallery-author small { font-size: 14px; color: var(--color-muted); }
+.gallery-card-top .page-eyebrow {
+  font-size: 14px;
+  letter-spacing: .5px;
+  line-height: 1.5;
+}
+.gallery-discussion .comment-row strong { font-size: 15px; }
+.gallery-discussion .comment-row p,
+.peer-feedback p,
+.learned-note {
+  font-size: 16px;
+  line-height: 1.75;
+}
+.comment-row p { overflow-wrap: anywhere; }
+.comment-row > div { min-width: 0; }
+.comment-input input {
+  min-width: 0;
+  font-size: 16px;
+  min-height: 42px;
+  padding: 10px 12px;
+}
+.comment-input button {
+  width: 40px;
+  min-height: 42px;
+  flex-shrink: 0;
+}
+.gallery-discussion .comment-delete {
+  opacity: 1;
+  min-width: 32px;
+  min-height: 32px;
+}
+.peer-gallery .gallery-prose { max-height: 520px; }
+.peer-review-summary,
+.peer-feedback-heading { font-size: 16px; }
+.peer-review-summary span,
+.peer-feedback-heading span { font-size: 14px; }
+.compare-report summary,
+.peer-review-editor summary,
+.gallery-discussion summary { font-size: 17px; }
+
+.chat-bubble { font-size: 16px; line-height: 1.7; }
+.chat-bubble table { font-size: 15px; }
+.chat-input-wrap textarea { font-size: 16px; line-height: 1.6; }
+.review-overall p { font-size: 16px; line-height: 1.7; }
+.ai-comparison .comparison-disclaimer { font-size: 14px !important; line-height: 1.6; }
+.comparison-heading p,
+.comparison-help,
+.comparison-status p { color: var(--color-muted); }
+
+/* Keep the footer below the content when a class name wraps onto more lines. */
+.class-card,
+.class-grid-large .class-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 216px;
+}
+.class-card-top { gap: 12px; flex-wrap: wrap; }
+.class-card h3 {
+  max-width: 100%;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.class-card p {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.class-card-foot {
+  position: static;
+  margin-top: auto;
+  padding-top: 18px;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.class-card-foot > span:first-child { min-width: 0; }
+.class-card-foot svg,
+.class-card-foot .round-arrow { flex-shrink: 0; }
+
+@media (max-width: 900px) {
+  .sidebar .side-nav a { font-size: 0; line-height: 0; }
+}
+@media (max-width: 650px) {
+  .peer-gallery .gallery-prose { max-height: 460px; }
+  .gallery-card-top .page-eyebrow { font-size: 13px; }
+  .gallery-author { align-items: flex-start; }
+  .gallery-author > div { min-width: 0; }
+  .gallery-author strong { overflow-wrap: anywhere; }
+  .button { padding: 9px 12px; }
+  .workspace-actions .button { min-width: 0; white-space: normal; }
+}

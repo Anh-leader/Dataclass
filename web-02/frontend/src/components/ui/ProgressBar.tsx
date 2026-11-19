@@ -1,0 +1,17 @@
+interface ProgressBarProps {
+  value: number
+  max?: number
+  label?: string
+}
+
+export default function ProgressBar({ value, max = 100, label }: ProgressBarProps) {
+  const pct = max > 0 ? Math.min(100, Math.round((value / max) * 100)) : 0
+  return (
+    <div className="progress-wrap">
+      <div className="progress-track">
+        <div className="progress-fill" style={{ width: `${pct}%` }} />
+      </div>
+      {label && <span className="progress-label">{label}</span>}
+    </div>
+  )
+}

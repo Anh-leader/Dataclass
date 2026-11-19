@@ -1,0 +1,15 @@
+# Runtime packages imported by DA-Agent-drive/graph.
+langgraph
+langchain
+langchain-google-genai
+langchain-ollama
+langchain-deepseek
+numpy
+pandas
+python-dotenv
+duckdb
+matplotlib
+seaborn
+e2b-code-interpreter==2.9.0
+openpyxl
+sqlglot

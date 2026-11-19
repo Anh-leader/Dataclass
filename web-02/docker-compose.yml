@@ -1,0 +1,71 @@
+services:
+  migrate:
+    build:
+      context: ..
+      dockerfile: web-02/backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      WEB02_DATA_DIR: /data
+      DA_AGENT_DIR: /opt/DA-Agent-drive
+    volumes:
+      - web02_data:/data
+    command: ["alembic", "upgrade", "head"]
+    restart: "no"
+
+  api:
+    build:
+      context: ..
+      dockerfile: web-02/backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      WEB02_DATA_DIR: /data
+      DA_AGENT_DIR: /opt/DA-Agent-drive
+    volumes:
+      - web02_data:/data
+      - ../DA-Agent-drive/graph:/opt/DA-Agent-drive/graph:ro
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+
+  worker:
+    build:
+      context: ..
+      dockerfile: web-02/backend/Dockerfile
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      WEB02_DATA_DIR: /data
+      DA_AGENT_DIR: /opt/DA-Agent-drive
+    volumes:
+      - web02_data:/data
+      - ../DA-Agent-drive/graph:/opt/DA-Agent-drive/graph:ro
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: web-02/frontend/Dockerfile
+    ports:
+      - "${WEB02_PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  web02_data:

@@ -1,0 +1,7 @@
+**
+!web-02/
+!web-02/frontend/
+!web-02/frontend/**
+web-02/frontend/node_modules
+web-02/frontend/dist
+web-02/frontend/*.tsbuildinfo
